@@ -8,18 +8,25 @@ import dataquotes from '../data/quotes.json';
 
 
 function App() {
-  const [quotes, setQuotes] = useState (dataquotes);
-  
-  console.log(quotes)
+  const [quotes] = useState (dataquotes);
+
+  const [filterPhrase, setFilterPhrase] = useState ('');
+
+  const handleFilterPhrase = (filterValue) => {
+    setFilterPhrase(filterValue);
+  }
+
+  const filteredQuotes = quotes.filter(quote => quote.quotes.includes(filterPhrase))
+
   return (
     <div className='app'>
       <Header/>
       <main className='main'>
-        <Filter/>
-        <QuotesList quotes= {quotes}/>
+        <Filter handleFilterPhrase={handleFilterPhrase}/>
+        <QuotesList quotes= {filteredQuotes}/>
       </main>
     </div>
   )
 }
 
-export default App
+export default App;

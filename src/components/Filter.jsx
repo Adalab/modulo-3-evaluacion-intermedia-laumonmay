@@ -1,5 +1,9 @@
-function Filter() {
-  
+function Filter(handleFilterPhrase) {
+
+  const handleInput = (event) => {
+    handleFilterPhrase (event.currentTarget.value)
+
+  };
 
     return (
         <form >
