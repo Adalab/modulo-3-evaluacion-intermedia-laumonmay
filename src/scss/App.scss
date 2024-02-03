@@ -1,0 +1,34 @@
+@import 'core/reset';
+
+.app {
+    text-align: center;
+    padding: 30px 100px 0px 100px;
+}
+header {
+    margin: 30px;
+}
+
+.filter {
+    padding: 10px;
+    border-radius: 15px;
+    border: solid 1px gray;
+    margin:0px 20px 40px 0px;
+}
+.phrases {
+    &__list {
+     border: solid 2px black;
+     padding: 30px;
+     display: flex;
+     justify-content: space-around;
+     
+    }
+    &__card {
+    border: solid 2px red;
+    border-radius: 5px;
+    padding: 10px;
+    margin:10px;
+    width: 600px;
+    }
+
+   
+}
