@@ -1,32 +1,54 @@
-import { useState } from 'react';
-import Header from './Header';
-import Filter from './Filter';
-import QuotesList from './QuotesList';
-
 import '../scss/App.scss';
-import dataquotes from '../data/quotes.json';
+import { useState } from 'react';
+import dataQuotes from '../data/quotes.json'; //import para pasarselo a quotesList
+
+import AddCharacter from './AddCharacter';
+import Filter from './Filter';
+import Header from './Header';
+import QuotesList from './QuotesList';
 
 
 function App() {
-  const [quotes] = useState (dataquotes);
+  const[quotesList] = useState(dataQuotes); //es muy importante, antes de nada, guardar los datos de la importacion de dataQuotes en una variable de estado
 
-  const [filterPhrase, setFilterPhrase] = useState ('');
 
-  const handleFilterPhrase = (filterValue) => {
-    setFilterPhrase(filterValue);
-  }
+  const[filterCharacter,setFilterCharacter] = useState("Todos");
+  const[filterQuote,setFilterQuote] = useState(" ");
 
-  const filteredQuotes = quotes.filter(quote => quote.quotes.includes(filterPhrase))
+  const handleFilter = (filterName, value) =>{
+    
+    if(filterName === 'quote') {
+      setFilterQuote(value);
+    }
+    else if(filterName === 'character'){
+      setFilterCharacter(value);
+    }
+  };
 
+
+  const filteredQuotes = 
+  quotesList
+  .filter(quote => quote.quote.toLowerCase().includes(filterQuote.toLowerCase()))
+  .filter (quote =>  {
+    if(filterCharacter === "Todos"){
+      return quotesList;
+    }
+    else {
+      return quote.character === filterCharacter;
+    }
+    });
+    
+  
   return (
-    <div className='app'>
-      <Header/>
-      <main className='main'>
-        <Filter handleFilterPhrase={handleFilterPhrase}/>
-        <QuotesList quotes= {filteredQuotes}/>
-      </main>
+    <div className='page'>
+     <Header/>
+     <main>
+      <Filter handleFilter ={handleFilter}/>
+      <QuotesList quotesList = {filteredQuotes}/>
+      <AddCharacter/>
+     </main>
     </div>
   )
 }
 
-export default App;
+export default App

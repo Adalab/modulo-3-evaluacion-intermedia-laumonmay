@@ -1,26 +1,24 @@
+import QuoteItem from "./QuoteItem";
 import PropTypes from 'prop-types';
-import QuotesItem from "./QuoteItem";
+  
 
-function QuotesList ({quotes}) {
 
-  const htmlQuotes = quotes.map((quote, index) => {
-    <li key = {index} className='phrases__card'>
-        <QuotesItem
-         phrase = {quote.quote}
-         character = {quote.character}
-        />
+function QuotesList({quotesList}) {
+
+  const quotesHtml = quotesList.map((quote, index) => (
+    <li key= {index} className="list__li">
+      <QuoteItem text={quote.quote} author={quote.character} />
     </li>
-  })
+  ));
 
     return (
-        <ul className='phrases__list'>
-          {htmlQuotes}
-        </ul>
+      <ul className="list">
+        {quotesHtml}
+      </ul>
     );
 }
-
 QuotesList.propTypes = {
-  quotes: PropTypes.array
-}
+  quotesList: PropTypes.array,
+  }
 
 export default QuotesList;

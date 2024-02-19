@@ -1,16 +1,19 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
+  
 
- 
-function QuotesItem({phrase, character}) {
+function QuoteItem({text, author}) {
 
     return (
-        <p className='phrases_phrase'>{phrase} - {character}</p>
+      <h3>
+        <span className="list__quote">{text}</span>
+        -<span className="list__character">{author}</span>
+      </h3>
     );
 }
 
-QuotesItem.propTypes = {
-    phrase: PropTypes.string.isRequired,
-    character: PropTypes.string.isRequired,
-}
+QuoteItem.propTypes = {
+  text: PropTypes.string,
+  author: PropTypes.string,
+};
 
-export default QuotesItem;
+export default QuoteItem;
